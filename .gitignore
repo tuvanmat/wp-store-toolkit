@@ -1,0 +1,14 @@
+# Dependencies and build output
+/vendor/
+/node_modules/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Local tooling
+phpcs.xml
+.phpcs-cache
