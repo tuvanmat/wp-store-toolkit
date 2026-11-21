@@ -44,9 +44,23 @@ class WPST_Settings {
 	}
 
 	/**
-	 * Adds the page under the Settings menu.
+	 * Adds the page under the WooCommerce menu when WooCommerce is
+	 * active, and under the Settings menu otherwise, so the page is
+	 * always reachable.
 	 */
 	public function add_menu_page() {
+		if ( class_exists( 'WooCommerce' ) ) {
+			add_submenu_page(
+				'woocommerce',
+				__( 'WP Store Toolkit', 'wp-store-toolkit' ),
+				__( 'Store Toolkit', 'wp-store-toolkit' ),
+				'manage_options',
+				self::PAGE_SLUG,
+				array( $this, 'render_page' )
+			);
+			return;
+		}
+
 		add_options_page(
 			__( 'WP Store Toolkit', 'wp-store-toolkit' ),
 			__( 'Store Toolkit', 'wp-store-toolkit' ),
