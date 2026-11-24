@@ -15,9 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The page lists every available module with an enable/disable
  * checkbox. Each module then adds its own settings section through
  * WPST_Module::register_settings(). All saving goes through the
- * WordPress Settings API, which handles the nonce and the
- * 'manage_options' capability check; input is additionally sanitised
- * in sanitize_settings() before it reaches the database.
+ * WordPress Settings API, which handles the nonce and the capability
+ * check; input is additionally sanitised in sanitize_settings()
+ * before it reaches the database. The capability required to see and
+ * save the page defaults to 'manage_options' and can be changed with
+ * the 'wpst_settings_capability' filter.
  */
 class WPST_Settings {
 
@@ -49,12 +51,14 @@ class WPST_Settings {
 	 * always reachable.
 	 */
 	public function add_menu_page() {
+		$capability = $this->get_capability();
+
 		if ( class_exists( 'WooCommerce' ) ) {
 			add_submenu_page(
 				'woocommerce',
 				__( 'WP Store Toolkit', 'wp-store-toolkit' ),
 				__( 'Store Toolkit', 'wp-store-toolkit' ),
-				'manage_options',
+				$capability,
 				self::PAGE_SLUG,
 				array( $this, 'render_page' )
 			);
@@ -64,10 +68,21 @@ class WPST_Settings {
 		add_options_page(
 			__( 'WP Store Toolkit', 'wp-store-toolkit' ),
 			__( 'Store Toolkit', 'wp-store-toolkit' ),
-			'manage_options',
+			$capability,
 			self::PAGE_SLUG,
 			array( $this, 'render_page' )
 		);
+	}
+
+	/**
+	 * Returns the capability required to view and save the settings
+	 * page. Defaults to 'manage_options'; use the filter to let a
+	 * different role (for example a shop manager) manage the toolkit.
+	 *
+	 * @return string
+	 */
+	public function get_capability() {
+		return apply_filters( 'wpst_settings_capability', 'manage_options' );
 	}
 
 	/**
@@ -206,7 +221,7 @@ class WPST_Settings {
 	 * Renders the full settings page.
 	 */
 	public function render_page() {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( $this->get_capability() ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'wp-store-toolkit' ) );
 		}
 		?>

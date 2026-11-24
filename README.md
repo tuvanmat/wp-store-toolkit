@@ -33,7 +33,8 @@ More modules are added one at a time. See
 1. Download the latest release (or clone this repository) into
    `wp-content/plugins/wp-store-toolkit`.
 2. Activate **WP Store Toolkit** in WordPress → Plugins.
-3. Go to **Settings → Store Toolkit** and enable the modules you want.
+3. Go to **WooCommerce → Store Toolkit** (or **Settings → Store Toolkit**
+   if WooCommerce is not active) and enable the modules you want.
 
 ## Requirements
 
