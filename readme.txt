@@ -21,6 +21,10 @@ otherwise; disabled modules are never loaded.
 The module list is growing one module at a time — see the project
 roadmap on GitHub for what is available and what is planned.
 
+The first module, Read More for Product Descriptions, collapses long
+and short product descriptions behind a "Read more" toggle (heights,
+labels and asset scope are configurable in the settings).
+
 == Installation ==
 
 1. Upload the `wp-store-toolkit` folder to `/wp-content/plugins/`.
@@ -32,3 +36,4 @@ roadmap on GitHub for what is available and what is planned.
 
 = 0.1.0 =
 * Initial release: plugin framework, module system and settings page.
+* Read More module: collapsible product descriptions with configurable heights, toggle labels and asset scope.

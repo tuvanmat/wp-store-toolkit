@@ -22,11 +22,29 @@ included.
 
 | Module | Status | What it does |
 | --- | --- | --- |
-| Read More for Product Descriptions | Planned — see the roadmap | Collapses long WooCommerce product descriptions behind a "Read more" toggle, with table-of-contents (EZ TOC) compatibility |
+| Read More for Product Descriptions | Available | Collapses long WooCommerce product descriptions behind a "Read more" toggle, with table-of-contents (EZ TOC) compatibility |
 | Quick Order Popup | Planned — see the roadmap | A "Quick order" button that opens a popup with a WPForms order form; Flatsome Quick View aware |
 
 More modules are added one at a time. See
 [docs/ROADMAP.md](docs/ROADMAP.md) for the current plan.
+
+## Read More module settings
+
+Once enabled, the Read More module adds its own section to the
+settings page:
+
+- **Long description height** (default 250px) — collapsed height of
+  the full product description.
+- **Short description height** (default 120px) — collapsed height of
+  the short product description.
+- **Expand / Collapse label** — text of the toggle while the
+  description is collapsed or expanded.
+- **Asset scope** — load the module's CSS and JavaScript on product
+  pages only, or on the entire site when a sticky table of contents
+  must reach headings inside collapsed descriptions on pages and
+  posts.
+
+Descriptions shorter than the configured height show no toggle.
 
 ## Installation
 

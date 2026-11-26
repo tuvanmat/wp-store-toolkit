@@ -20,6 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return WPST_Module[]
  */
 function wpst_register_builtin_modules( $modules ) {
+	$modules[] = new WPST_Read_More();
+
 	// Modules are appended here as they are ported into the toolkit.
 	return $modules;
 }
